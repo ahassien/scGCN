@@ -157,7 +157,8 @@ print('Checking train/test/val set accuracy: {}, {}, {}'.format(
 print('Checking pred set accuracy: {}'.format(acc_pred))
 
 #' save the predicted labels of query data
-os.mkdir(FLAGS.output)
+if not os.path.exists(FLAGS.output):
+    os.mkdir(FLAGS.output)
 scGCN_all_labels = true_label.values.flatten()  #' ground truth
 np.savetxt(FLAGS.output + '/scGCN_all_input_labels.csv',scGCN_all_labels,delimiter=',',comments='',fmt='%s')
 np.savetxt(FLAGS.output+'/scGCN_query_mask.csv',pred_mask,delimiter=',',comments='',fmt='%s')           
